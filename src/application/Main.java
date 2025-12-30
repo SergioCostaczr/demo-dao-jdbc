@@ -2,6 +2,7 @@ package application;
 
 import model.dao.DaoFactory;
 import model.dao.SellerDao;
+import model.dao.impl.SellerDaoJDBC;
 import model.entities.Department;
 import model.entities.Seller;
 
@@ -12,17 +13,22 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         SellerDao sellerDao = DaoFactory.creatSellerDao();
-        System.out.println("=== TEST1: seler find by id ===");
+        System.out.println("=== TEST1: seller find by id ===");
         Seller seller = sellerDao.findById(3);
         System.out.println(seller);
 
-        System.out.println("\n=== TEST2: seler findByDepartment ===");
+        System.out.println("\n=== TEST2: seller findByDepartment ===");
         Department department = new Department(2,null);
         List<Seller> list = sellerDao.findByDepartment(department);
         list.forEach(System.out::println);
 
-        System.out.println("\n=== TEST3: seler findAll ===");
+        System.out.println("\n=== TEST3: seller findAll ===");
         list = sellerDao.findAll();
         list.forEach(System.out::println);
+
+        System.out.println("\n=== TEST4: seller seller insert ===");
+        Seller seller1 = new Seller(null, "Greg", "greg@gmail.com", LocalDate.now(),4000.0,department);
+        sellerDao.insert(seller1);
+        System.out.println("Inserted! New id = " + seller1.getId());
     }
 }
