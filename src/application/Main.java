@@ -7,6 +7,7 @@ import model.entities.Seller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,8 +16,11 @@ public class Main {
         Seller seller = sellerDao.findById(3);
         System.out.println(seller);
 
+        System.out.println("\n=== TEST2: seler findByDepartment ===");
+        Department department = new Department(2,null);
+        List<Seller> list = sellerDao.findByDepartment(department);
 
-
+        list.forEach(System.out::println);
 
     }
 }
