@@ -90,7 +90,6 @@ public class SellerDaoJDBC implements SellerDao {
                 throw new DbException("Invalid Id");
             }
 
-
         } catch (SQLException e){
             throw new DbException(e.getMessage());
         } finally {
